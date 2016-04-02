@@ -1,0 +1,99 @@
+{
+	"version": 1,
+	"allow_edit": true,
+	"plugins": [],
+	"panes": [
+		{
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 1
+			},
+			"col_width": 1,
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "hello?",
+						"size": "regular",
+						"value": "datasources[\"name\"].msg",
+						"animate": true
+					}
+				}
+			]
+		},
+		{
+			"title": "Json Message",
+			"width": 1,
+			"row": {
+				"3": 1
+			},
+			"col": {
+				"3": 2
+			},
+			"col_width": "2",
+			"widgets": [
+				{
+					"type": "text_widget",
+					"settings": {
+						"title": "noID",
+						"size": "regular",
+						"value": "datasources[\"JsonTopic\"][\"msg\"][\"d\"][\"id\"][\"myName\"]",
+						"animate": true
+					}
+				},
+				{
+					"type": "gauge",
+					"settings": {
+						"title": "Counter",
+						"value": "datasources[\"JsonTopic\"][\"msg\"][\"d\"][\"data\"][\"counter\"]",
+						"units": "counts",
+						"min_value": 0,
+						"max_value": "1000"
+					}
+				},
+				{
+					"type": "text_widget",
+					"settings": {
+						"size": "regular",
+						"value": "datasources[\"JsonTopic\"][\"msg\"][\"d\"][\"data\"][\"mensaje\"]",
+						"animate": true
+					}
+				}
+			]
+		}
+	],
+	"datasources": [
+		{
+			"name": "name",
+			"type": "paho_mqtt",
+			"settings": {
+				"server": "184.173.18.156",
+				"port": 9001,
+				"use_ssl": false,
+				"client_id": "pahoweb",
+				"username": "flatbox",
+				"password": "",
+				"topic": "outTopic",
+				"json_data": false
+			}
+		},
+		{
+			"name": "JsonTopic",
+			"type": "paho_mqtt",
+			"settings": {
+				"server": "184.173.18.156",
+				"port": 9001,
+				"use_ssl": false,
+				"client_id": "JsonMqttTopic",
+				"username": "Json",
+				"password": "",
+				"topic": "outJsonTopic",
+				"json_data": true
+			}
+		}
+	],
+	"columns": 3
+}
