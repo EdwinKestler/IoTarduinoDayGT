@@ -29,9 +29,9 @@
 
 // Update these with values suitable for your network.
 
-const char* ssid = "T4M2";
-const char* password = "8E85AE4B7D";
-const char* mqtt_server = "iotarduinodaygt.flatbox.io";
+const char* ssid = "POSMOVIL_GUEST";
+const char* password = "Bienvenid@saPAQ";
+const char* mqtt_server = "35.188.56.80";
 
 WiFiClient espClient;
 PubSubClient client(espClient);
@@ -121,10 +121,10 @@ void reconnect() {
   while (!client.connected()) {
     Serial.print("Attempting MQTT connection...");
     // Attempt to connect
-    if (client.connect("ESP8266Client")) {
+    if (client.connect("ESP8266Client","flatboxadmin","FBx_admin2012")) {
       Serial.println("connected");
       // Once connected, publish an announcement...
-      client.publish("outTopic", "hello world");
+      client.publish("TestTopic", "hello world");
       // ... and resubscribe
       client.subscribe("inTopic");
     } else {
@@ -150,7 +150,7 @@ void loop() {
     snprintf (msg, 75, "hello world #%ld", value);
     Serial.print("Publish message: ");
     Serial.println(msg);
-    client.publish("outTopic", msg);
+    client.publish("TestTopic", msg);
     publishData();
   }
 }
